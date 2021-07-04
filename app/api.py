@@ -9,11 +9,12 @@ def invoke():
         text : str = request.get_json(force=True)['text']
     except :
         return { "translation" : 'Error' }
-    if not query:
+    if not text:
         return { "translation" : 'No text !' }
     # Translate text
-    translated_text = translator(text)
-    return { "translation" : translated_text }
+    output = translator(text)[0]
+    print(' translated_text : ', output)
+    return output
 
 @app.route("/ping")
 def ping():
